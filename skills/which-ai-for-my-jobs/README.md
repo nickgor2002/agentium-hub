@@ -29,10 +29,10 @@ flowchart LR
 
 1. **It looks first.** It reads what your AI app already knows about you, then shows one card of eight lines. You confirm it in one reply.
 2. **Your jobs.** With your yes, it finds the jobs you ask your AI most. You pick three to five.
-3. **Lock what right looks like.** Each job becomes a fixed test, with invented names, and checks you agree first.
+3. **Lock what right looks like.** Each job becomes a fixed test in your own format, with invented names, and checks you agree first.
 4. **The plan and its cost.** You see every AI, try and price before anything runs, and say yes.
 5. **Run, lowest setting first.** Each try in a clean session. Every finalist gets three fresh tries.
-6. **Best, and best value.** A small program reads the record and names the winners. It remembers, for the next model.
+6. **Best, and best value.** It names the best and the best value for each job. You choose to switch or keep what you use.
 
 ## How to use it
 
