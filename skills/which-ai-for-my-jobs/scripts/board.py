@@ -1008,6 +1008,37 @@ def picks(jobs, S, misses=None, need=None):
     return out
 
 
+def still_owed(cs, jobs, rows, need, misses):
+    """What the run still owes, by its own rules, so nobody has to guess whether it is finished. For each model of the
+    plan and each job, lowest effort first: an effort not tried yet owes its first try; one that is inside the bar so
+    far gets its full tries; one that broke the bar sends the job up one effort; when every effort broke it, the best
+    one gets its full tries. Returns [(setting and job, tries owed, at which effort)]."""
+    out = []
+    for app, model, efforts, _seen in cs:
+        for j in jobs:
+            n, w = for_job(need, j), for_job(misses, j)
+            seen_ = {}
+            for r in rows:
+                if (r.get("app"), r.get("model"), r.get("job"), r.get("version")) == (app, model, j[0], j[1]) and r.get("right") in ("yes", "no", "split"):
+                    c = seen_.setdefault(r.get("effort"), {"tried": 0, "wrong": 0, "right": 0})
+                    c["tried"] += 1; c["wrong"] += r["right"] == "no"; c["right"] += r["right"] == "yes"
+            owes = None
+            for e in efforts:
+                c = seen_.get(e)
+                if not c:
+                    owes = (1, e); break
+                if c["wrong"] > w:
+                    continue                                   # it broke the bar here: the job goes up one effort
+                owes = (n - c["tried"], e) if c["tried"] < n else None
+                break
+            else:                                              # every effort broke the bar: the best one gets its full tries
+                best = max(efforts, key=lambda e: (seen_[e]["right"] / seen_[e]["tried"], -efforts.index(e)))
+                owes = (n - seen_[best]["tried"], best) if seen_[best]["tried"] < n else None
+            if owes:
+                out.append(("%s / %s on %s" % (app, model, j[0]), owes[0], owes[1]))
+    return out
+
+
 def card_bar():
     """The person's own line 8, as the board's --need and --misses; nothing when no settled card is saved."""
     try:
@@ -1127,6 +1158,17 @@ def show(a):
         for j in jobs:
             who_passed = [name(k) for k in sorted(S) if j in S[k]["passed"]]
             print("PASSED %s (%s), every try right: %s" % (j[0], j[1], "; ".join(who_passed) or "no setting"))
+        owed = still_owed(cs, jobs, [r for r in rows if r.get("right") != "void"], need, misses)
+        if owed or wait:
+            total = sum(o[1] for o in owed)
+            print("THE RUN IS NOT FINISHED: %d %s still owed%s%s. Do not tell them it is finished or that every try is "
+                  "recorded: run what is owed (or, if their limit ends first, say what is missing), then show again."
+                  % (total, "try is" if total == 1 else "tries are",
+                     " (%s%s)" % ("; ".join("%s: %d more at %s" % o for o in owed[:8]), "; and %d more settings" % (len(owed) - 8) if len(owed) > 8 else "") if owed else "",
+                     ", and %d answer%s for the person" % (len(wait), " waits" if len(wait) == 1 else "s wait") if wait else ""))
+        else:
+            print("THE RUN IS FINISHED: every model in the plan has, on every job, its full tries at the effort it settled "
+                  "on, and no answer waits for the person.")
         every = load()
         kinds = {k: sum(1 for r in every if r.get("right") == k or (k == "marked" and r.get("right") in ("yes", "no"))) for k in ("marked", "void", "missing", "split")}
         at = sorted(str(r["at"]) for r in every if r.get("at"))
