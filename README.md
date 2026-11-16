@@ -12,6 +12,37 @@ the AI app you already use, on your own computer, and asks before it reads, spen
 
 ## Tools and skills
 
+### [How complex is your setup?](skills/how-complex-is-my-setup/) · a skill
+
+A free skill for the AI app you already use: it reads what you already have, tells you how complex your setup is, and gives your next moves, the simplest first.
+
+**Ask your AI:** "How complex is my AI setup, and what should I simplify or add next?"
+
+<details><summary>How it works, in 6 steps</summary>
+
+```mermaid
+flowchart LR
+  s1["1. It looks first"]:::c1
+  s2["2. Your jobs, one line each"]:::c2
+  s3["3. Four reads on each job"]:::c3
+  s4["4. Where you stand"]:::c4
+  s5["5. Three moves at most"]:::c5
+  s6["6. A page you keep"]:::c6
+  s1 --> s2 --> s3 --> s4 --> s5 --> s6
+  s6 ~~~ pad["················"]:::pad
+  classDef c1 fill:#8B8AF0,stroke:#8B8AF0,color:#0f172a
+  classDef c2 fill:#F08A6C,stroke:#F08A6C,color:#0f172a
+  classDef c3 fill:#2EC4B6,stroke:#2EC4B6,color:#0f172a
+  classDef c4 fill:#E8B04A,stroke:#E8B04A,color:#0f172a
+  classDef c5 fill:#A98BF0,stroke:#A98BF0,color:#0f172a
+  classDef c6 fill:#5FB3F0,stroke:#5FB3F0,color:#0f172a
+  classDef pad fill:none,stroke:none,color:transparent
+```
+
+</details>
+
+[Open the folder](skills/how-complex-is-my-setup/) · [See it explained online](https://tools.agentiumai.it/how-complex-is-my-setup/)
+
 ### [Which AI for my jobs?](skills/which-ai-for-my-jobs/) · a skill
 
 A skill for the AI app you already use: it tests your own jobs on every AI and setting you can reach, and names the best one and the best value from your own results.

@@ -24,6 +24,7 @@ https://tools.agentiumai.it/<tool>/. A skill is a folder an AI app follows: `SKI
 
 ## What is here
 
+- Skill `how-complex-is-my-setup` (folder `skills/how-complex-is-my-setup/`: follow its SKILL.md; its README.md describes it): A free skill for the AI app you already use: it reads what you already have, tells you how complex your setup is, and gives your next moves, the simplest first. Page: https://tools.agentiumai.it/how-complex-is-my-setup/
 - Skill `which-ai-for-my-jobs` (folder `skills/which-ai-for-my-jobs/`: follow its SKILL.md; its README.md describes it): A skill for the AI app you already use: it tests your own jobs on every AI and setting you can reach, and names the best one and the best value from your own results. Page: https://tools.agentiumai.it/which-ai-for-which-job/
 
 ## Explain a skill
