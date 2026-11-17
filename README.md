@@ -24,7 +24,7 @@ A free skill for the AI app you already use: it reads what you already have, tel
 flowchart LR
   s1["1. It looks first"]:::c1
   s2["2. Your jobs, one line each"]:::c2
-  s3["3. Four reads on each job"]:::c3
+  s3["3. Four questions on each job"]:::c3
   s4["4. Where you stand"]:::c4
   s5["5. Three moves at most"]:::c5
   s6["6. A page you keep"]:::c6

@@ -12,7 +12,7 @@
 flowchart LR
   s1["1. It looks first"]:::c1
   s2["2. Your jobs, one line each"]:::c2
-  s3["3. Four reads on each job"]:::c3
+  s3["3. Four questions on each job"]:::c3
   s4["4. Where you stand"]:::c4
   s5["5. Three moves at most"]:::c5
   s6["6. A page you keep"]:::c6
@@ -29,9 +29,9 @@ flowchart LR
 
 1. **It looks first.** It reads what the AI apps on your computer already have set up: standing instructions, skills, connected tools, anything that runs by itself. Names and counts only.
 2. **Your jobs, one line each.** One line for each job you give to AI, as it is done today, not as you wish it were.
-3. **Four reads on each job.** Who does it, what it can touch, where its rule lives, and who checks it.
+3. **Four questions on each job.** For each job your AI does: who does it, what that job is allowed to touch, where its rule lives, and who checks it.
 4. **Where you stand.** A ladder from 0 to 4: by hand, a chat you ask, an agent that acts when asked, an agent that acts by itself, several agents together.
-5. **Three moves at most.** The simplest first: take away what you do not use, shorten what is read before every answer, move a rule up for anything that can send, pay or delete, add a check to what runs by itself.
+5. **Three moves at most.** The simplest first: take away what you do not use, shorten what is read before every answer, move a rule up for any job that is able to send, pay or delete, add a check to what runs by itself.
 6. **A page you keep.** On your yes, it keeps one page in a folder called my-ai-setup: the date, your map, where you stand, the moves and what you chose.
 
 ## How to use it
